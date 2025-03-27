@@ -38,15 +38,14 @@ A scalable enterprise platform for managing drone surveys, missions, and organiz
 
 1. **Prerequisites**
    ```bash
+   # Required software
    - Node.js >= 20.0.0
    - MongoDB
+   - npm or yarn
    ```
 
 2. **Environment Setup**
    ```bash
-   # Clone the repository
-   git clone [repository-url]
-   cd drone-survey-management-system
 
    # Install dependencies
    npm install
@@ -56,20 +55,56 @@ A scalable enterprise platform for managing drone surveys, missions, and organiz
    ```
 
 3. **Configure Environment Variables**
-   ```
-   MONGODB_URI=your_mongodb_connection_string
+   ```env
+   # Required environment variables
+   MONGODB_URI=mongodb://localhost:27017/drone-survey
    PORT=4000
    NODE_ENV=development
    CORS_ORIGIN=http://localhost:5173
+   
+   # Optional configurations
+   LOG_LEVEL=debug
+   MAINTENANCE_MODE=false
    ```
 
-4. **Start the Server**
+4. **Database Setup**
    ```bash
-   # Development mode
+   # Start MongoDB service
+   mongod --dbpath /path/to/data/directory
+
+   # Initialize database (optional)
+   npm run seed
+   ```
+
+5. **Start Development Server**
+   ```bash
+   # Run in development mode
    npm run dev
 
-   # Production mode
+   # Run in production mode
    npm start
+   ```
+
+6. **Testing**
+   ```bash
+   # Run all tests
+   npm test
+
+   # Run specific test suite
+   npm test -- --grep "Organization API"
+   ```
+
+7. **API Documentation**
+   - Access API documentation at `http://localhost:4000/docs`
+   - Or refer to the `docs/api` directory for markdown documentation
+
+8. **Development Tools**
+   ```bash
+   # Run linter
+   npm run lint
+
+   # Fix linting issues
+   npm run lint -- --fix
    ```
 
 ## API Endpoints

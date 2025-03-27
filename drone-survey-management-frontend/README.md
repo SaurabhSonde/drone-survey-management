@@ -25,22 +25,16 @@ A React-based frontend application for managing drone fleets, planning missions,
 
 ## Getting Started
 
-1. Clone the repository:
-```bash
-git clone https://github.com/yourusername/drone-survey-management-frontend.git
-cd drone-survey-management-frontend
-```
-
-2. Install dependencies:
+1. Install dependencies:
 ```bash
 npm install
 ```
 
-3. Configure environment:
+2. Configure environment:
 - Copy `.env.example` to `.env`
 - Update environment variables as needed
 
-4. Start development server:
+3. Start development server:
 ```bash
 npm run dev
 ```
