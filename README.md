@@ -110,6 +110,16 @@ After setting up the project, follow these steps to create initial data for test
      - Flight Zone by selecting dragging the rectangle on map
    - Save the mission
 
+4. Test Real-time Behavior
+   - Schedule a test mission 2-3 minutes ahead of current time
+   - Navigate to "Mission Monitoring" tab
+   - Wait for the scheduled mission time
+   - Observe real-time updates:
+     - Mission status will change from "scheduled" to "in-progress" to "completed"
+     - Statistics panel will update automatically
+     - Active missions count will increment during execution
+     - Completed missions count will increment after completion
+
 Following these steps will ensure you have a fully functional application with test data to explore all features.
 
 ## Features
