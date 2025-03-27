@@ -14,7 +14,7 @@ import { toast } from 'sonner';
 
 const MissionPlanning = () => {
     // Context
-    const { activeOrganization, drones } = useContext(DroneManagementContext);
+    const { activeOrganization, drones, addMission } = useContext(DroneManagementContext);
 
     // States
     const [mission, setMission] = useState({
@@ -87,8 +87,8 @@ const MissionPlanning = () => {
                 delete body.recurrenceRule
             }
 
-            await axios.post(`${constant.url}/missions`, body);
-
+            const response = await axios.post(`${constant.url}/missions`, body);
+            addMission(response.data.mission)
             toast.success('Mission scheduled successfully.');
         } catch (error) {
             console.error("Error saving mission:", error);

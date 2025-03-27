@@ -26,7 +26,8 @@ const DroneManagementContext = createContext({
     getAllMissions: () => { },
     getStatistics: () => { },
     addDrone: () => { },
-    removeDrone: () => { }
+    removeDrone: () => { },
+    addMission: () => { },
 })
 
 export const DroneManagementProvider = (props) => {
@@ -152,6 +153,10 @@ export const DroneManagementProvider = (props) => {
         setDrones(filteredDrones)
     }
 
+    const addMission = (value) => {
+        setMissions([value, ...missions])
+    }
+
     const context = {
         activeTab,
         organizations,
@@ -169,7 +174,8 @@ export const DroneManagementProvider = (props) => {
         getAllMissions,
         getStatistics,
         addDrone,
-        removeDrone
+        removeDrone,
+        addMission
     }
 
     return <DroneManagementContext.Provider value={context}>{props.children}</DroneManagementContext.Provider>
