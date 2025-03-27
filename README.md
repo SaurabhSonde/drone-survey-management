@@ -77,6 +77,41 @@ npm run dev
 - Backend API: http://localhost:4000
 - Frontend: http://localhost:5173
 
+## Setting Up Initial Data
+
+After setting up the project, follow these steps to create initial data for testing:
+
+1. Create an Organization
+   - Click "Create Organization" in Navbar
+   - Fill in the required details (name, description, email)
+   - Submit the form to create your organization
+
+2. Add Drones
+   - Go to the "Fleet Management" section
+   - Click "Add Drone"
+   - Enter drone details:
+     - Model
+     - Serial Number
+     - Battery Capacity
+     - Status
+   - Save the drone information
+   - Repeat this process for additional drones
+
+3. Create a Mission
+   - Navigate to Mission Planning
+   - Click "Create New Mission"
+   - Select the organization
+   - Choose the drone(s) to assign
+   - Set mission parameters:
+     - Mission Name
+     - Mission Description
+     - Select one time or recurring mission
+     - Date and Time
+     - Flight Zone by selecting dragging the rectangle on map
+   - Save the mission
+
+Following these steps will ensure you have a fully functional application with test data to explore all features.
+
 ## Features
 
 ### Organization Management
