@@ -118,7 +118,7 @@ const MissionPlanning = () => {
     return (
         <div className="flex h-[calc(100vh-320px)] w-full">
             {/* Left Side - Map */}
-            <div className="w-2/3 h-full border-[0.5px] border-[#dcdcdc] rounded-[10px] overflow-hidden">
+            <div className="w-2/3 h-full border-[0.5px] border-[#dcdcdc] rounded-[10px] overflow-hidden z-0">
                 <MapContainer center={[18.559, 73.776]} zoom={15} className="h-full w-full">
                     <TileLayer
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

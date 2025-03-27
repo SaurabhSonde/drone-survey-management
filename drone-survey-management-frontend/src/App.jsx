@@ -14,10 +14,11 @@ import SectionBar from './components/common-components/SectionBar'
 import MissionPlanning from './components/MissionPlanning/MissionPlanning'
 import FleetManagement from './components/FleetManagement/FleetManagement'
 import MissionMonitoring from './components/MissionMonitoring/MissionMonitoring'
+import CreateOrgModal from './components/MissionPlanning/CreateOrgModel'
 
 const App = () => {
   // Context
-  const { activeTab, activeOrganization, getOrganizationDrones, getAllMissions } = useContext(DroneManagementContext)
+  const { activeTab, activeOrganization, isCreateOrgModelOpen, getOrganizationDrones, getAllMissions, handleCreateOrgModel } = useContext(DroneManagementContext)
 
 
   useEffect(() => {
@@ -33,6 +34,7 @@ const App = () => {
       <div className="flex flex-col gap-[20px] p-[20px] w-[80%]">
         <Statistics />
         <SectionBar />
+        {isCreateOrgModelOpen && <CreateOrgModal onClose={handleCreateOrgModel} />}
 
         {activeTab === "Mission Planning" && <MissionPlanning />}
         {activeTab === "Fleet Management" && <FleetManagement />}

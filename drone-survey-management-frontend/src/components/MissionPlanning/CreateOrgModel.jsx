@@ -7,19 +7,15 @@ import DroneManagementContext from '../../store/DroneManagementProvider';
 import { toast } from 'sonner';
 import axios from 'axios';
 
-
-const AddDroneModal = ({ onClose }) => {
+const CreateOrgModal = ({ onClose }) => {
     // Context
-    const { activeOrganization, addDrone } = useContext(DroneManagementContext)
+    const { addOrg } = useContext(DroneManagementContext)
 
     // States
     const [formData, setFormData] = useState({
-        serialNumber: "",
-        model: "",
-        status: "available",
-        batteryLevel: 100,
-        currentLocation: { type: "Point", coordinates: [0, 0] },
-        lastMaintenance: ""
+        name: "",
+        description: "",
+        contactEmail: ""
     });
     const [loading, setLoading] = useState(false)
 
@@ -36,75 +32,57 @@ const AddDroneModal = ({ onClose }) => {
         try {
             setLoading(true)
             const body = {
-                ...formData,
-                organizationId: activeOrganization?._id
+                ...formData
             }
-            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/drones`, body)
-            addDrone(response.data.drone)
-            toast.success('Drone add successfully.')
+            const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/organizations`, body)
+            addOrg(response.data.organization)
+            toast.success('Organization added successfully.')
             setLoading(false)
             onClose(); // Close modal
         } catch (error) {
-            toast.error('Failed to add drone.')
+            toast.error('Failed to add organization.')
             console.error(error);
             setLoading(false)
         }
     };
 
     return (
-        <div className='fixed top-0 left-0 right-0 bottom-0 bg-[#00000A73] backdrop-blur-[5px] z-20 flex justify-center items-center' onClick={onClose}>
+        <div className='fixed top-0 left-0 right-0 bottom-0 bg-[#00000A73] backdrop-blur-[5px] z-50 flex justify-center items-center' onClick={onClose}>
             <div className="bg-white p-6 rounded-lg shadow-lg w-96" onClick={(e) => e.stopPropagation()}>
-                <h2 className="text-lg font-bold mb-4">Add New Drone</h2>
+                <h2 className="text-lg font-bold mb-4">Add New Organization</h2>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
-                        <label className="block text-sm font-medium">Serial Number</label>
+                        <label className="block text-sm font-medium">Name</label>
                         <input
                             type="text"
-                            name="serialNumber"
+                            name="name"
                             required
-                            value={formData.serialNumber}
+                            value={formData.name}
                             onChange={handleChange}
                             className="w-full border-[0.5px] border-[#dcdcdc] p-2 rounded outline-none"
                         />
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium">Model</label>
+                        <label className="block text-sm font-medium">Description</label>
                         <input
                             type="text"
-                            name="model"
+                            name="description"
                             required
-                            value={formData.model}
+                            value={formData.description}
                             onChange={handleChange}
                             className="w-full border-[0.5px] border-[#dcdcdc] p-2 rounded outline-none"
                         />
                     </div>
 
                     <div>
-                        <label className="block text-sm font-medium">Status</label>
-                        <select
-                            name="status"
-                            value={formData.status}
-                            onChange={handleChange}
-                            className="w-full border-[0.5px] border-[#dcdcdc] p-2 rounded outline-none"
-                        >
-                            <option value="available">Available</option>
-                            <option value="assigned">Assigned</option>
-                            <option value="maintenance">Maintenance</option>
-                            <option value="charging">Charging</option>
-                            <option value="out-of-service">Out of Service</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label className="block text-sm font-medium">Battery Level</label>
+                        <label className="block text-sm font-medium">Email</label>
                         <input
-                            type="number"
-                            name="batteryLevel"
-                            min="0"
-                            max="100"
-                            value={formData.batteryLevel}
+                            type="text"
+                            name="contactEmail"
+                            required
+                            value={formData.email}
                             onChange={handleChange}
                             className="w-full border-[0.5px] border-[#dcdcdc] p-2 rounded outline-none"
                         />
@@ -122,7 +100,7 @@ const AddDroneModal = ({ onClose }) => {
                             type="submit"
                             className="px-4 py-2 bg-blue-600 text-white rounded cursor-pointer"
                         >
-                            {loading ? 'Adding...' : 'Add Drone'}
+                            {loading ? 'Adding...' : 'Add Organization'}
                         </button>
                     </div>
                 </form>
@@ -131,4 +109,4 @@ const AddDroneModal = ({ onClose }) => {
     );
 };
 
-export default AddDroneModal;
+export default CreateOrgModal;

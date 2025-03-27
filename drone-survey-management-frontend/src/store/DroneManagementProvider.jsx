@@ -17,6 +17,7 @@ const DroneManagementContext = createContext({
     missionLoading: true,
     statistics: null,
     statisticsLoading: true,
+    isCreateOrgModelOpen: false,
 
 
     handleActiveTab: () => { },
@@ -28,6 +29,8 @@ const DroneManagementContext = createContext({
     addDrone: () => { },
     removeDrone: () => { },
     addMission: () => { },
+    handleCreateOrgModel: () => { },
+    addOrg: () => { },
 })
 
 export const DroneManagementProvider = (props) => {
@@ -39,6 +42,7 @@ export const DroneManagementProvider = (props) => {
     const [missionLoading, setMissionLoading] = useState(true)
     const [statistics, setStatistics] = useState(null);
     const [statisticsLoading, setStatisticsLoading] = useState(true);
+    const [isCreateOrgModelOpen, setIsCreateOrgModelOpen] = useState(false)
 
 
     useEffect(() => {
@@ -157,6 +161,14 @@ export const DroneManagementProvider = (props) => {
         setMissions([value, ...missions])
     }
 
+    const addOrg = (value) => {
+        setOrganizations([value, ...organizations])
+    }
+
+    const handleCreateOrgModel = () => {
+        setIsCreateOrgModelOpen(!isCreateOrgModelOpen)
+    }
+
     const context = {
         activeTab,
         organizations,
@@ -166,6 +178,7 @@ export const DroneManagementProvider = (props) => {
         missionLoading,
         statistics,
         statisticsLoading,
+        isCreateOrgModelOpen,
 
         handleActiveTab,
         getAllOrganization,
@@ -175,7 +188,9 @@ export const DroneManagementProvider = (props) => {
         getStatistics,
         addDrone,
         removeDrone,
-        addMission
+        addMission,
+        handleCreateOrgModel,
+        addOrg
     }
 
     return <DroneManagementContext.Provider value={context}>{props.children}</DroneManagementContext.Provider>
